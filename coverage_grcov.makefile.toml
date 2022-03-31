@@ -36,9 +36,12 @@ rm -rf ${COVERAGE_PROF_OUTPUT}
 mkdir ${COVERAGE_PROF_OUTPUT}
 '''
 
-[tasks.coverage_grcov]
+[tasks.install_grcov]
 workspace=true
 install_crate= {crate_name="grcov"}
+
+[tasks.coverage_grcov]
+workspace=true
 env = {"RUSTUP_TOOLCHAIN"="nightly"}
 script = '''
 #!/usr/bin/env bash
@@ -48,4 +51,4 @@ grcov ${COVERAGE_PROF_OUTPUT} \
   -b ${COVERAGE_BINARIES} -s ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY} \
   -t lcov --llvm --branch --ignore-not-existing --ignore "/*" -o ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/target/lcov.info
 '''
-dependencies=["coverage_grcov_build", "coverage_grcov_prepare_outdir", "coverage_grcov_run_test"]
+dependencies=["install_grcov","coverage_grcov_build", "coverage_grcov_prepare_outdir", "coverage_grcov_run_test"]
