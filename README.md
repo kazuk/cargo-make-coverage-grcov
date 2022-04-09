@@ -4,6 +4,12 @@
 
 ## Install
 
+add `llvm-tools-preview` rust component.
+
+```shell
+rustup component add llvm-tools-preview
+```
+
 get the file.
 
 ```shell
