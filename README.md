@@ -35,3 +35,17 @@ cargo make coverage
 ```
 
  coverage result placed on `target/lcov.info`
+
+## Configuration Options
+
+### Turn off auto install `grcov`
+
+Set `SKIP_INSTALL_GRCOV` environment variable. like a bellow.
+
+```
+[tasks.coverage]
+alias="coverage_grcov"
+
+  [tasks.coverage.env]
+  SKIP_INSTALL_GRCOV = 1
+ ```
