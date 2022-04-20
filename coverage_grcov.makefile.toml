@@ -90,10 +90,11 @@ script='''
 set -eux
 
 rm -rf ${COVERAGE_PROF_OUTPUT}
-mkdir ${COVERAGE_PROF_OUTPUT}
+mkdir -p ${COVERAGE_PROF_OUTPUT}
 '''
 
 [tasks.install_grcov]
+condition = { env_not_set = ["SKIP_INSTALL_GRCOV"] }
 workspace=true
 install_crate= {crate_name="grcov"}
 
